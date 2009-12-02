@@ -31,18 +31,17 @@ SRC=
 OBJ=
 TEST=
 
-TRG_bin:=$(BINDIR)/trg
-TRG_src:=
-TRG_obj:=
-
-BIN+=$(TRG_bin)
-SRC+=$(TRG_src)
-OBJ+=$(TRG_obj)
-
 BINDIR=bin
 SRCDIR=src
 OBJDIR=obj
 TESTDIR=test
+
+TRG_bin:=$(BINDIR)/trg
+TRG_src:=
+TRG_obj:=
+BIN+=$(TRG_bin)
+SRC+=$(TRG_src)
+OBJ+=$(TRG_obj)
 
 all: $(BIN) check
 check: $(TEST)
@@ -54,8 +53,9 @@ clean:
 
 -include $(SRCDIR)/local.mk /dev/null
 
-TRG_obj:=$(patsubst $(SRCDIR)/,$(OBJDIR)/,$(TRG_src))
+TRG_obj:=$(patsubst $(SRCDIR)/%.c,$(OBJDIR)/%.o,$(TRG_src))
 $(TRG_bin):$(TRG_obj)
+	$(CC) $(LDFLAGS) -o $@ $(filter %.o,$^) $(LDLIBS)
 
 $(BIN):$(BINDIR)/empty
 $(SRC):$(SRCDIR)/empty
@@ -73,6 +73,6 @@ $(OBJDIR)/empty:
 	touch $@
 
 $(OBJDIR)/%.o:$(SRCDIR)/%.c
-	$(CC) $(CFLAGS) $(CPPFLAGS) -E $< -o $@
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c -o $@ $<
 
 # end
