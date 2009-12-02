@@ -21,6 +21,8 @@
 
 THISDIR=$(dir $(lastword $(MAKEFILE_LIST)))
 
+TRG_src+=$(THISDIR)/trg.c
+
 -include $(wildcard $(patsubst $(SRCDIR)/,$(OBJDIR)/,$(THISDIR))*.d) /dev/null
 
 # end
