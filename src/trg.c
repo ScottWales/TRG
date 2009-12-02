@@ -22,5 +22,8 @@
  * Boston, MA 02110-1301, USA.
  */
 
-
+int main(int argc, char ** argv)
+{
+  return 0;
+}
 
