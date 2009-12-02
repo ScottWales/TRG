@@ -48,9 +48,9 @@ all: $(BIN) check
 check: $(TEST)
 	for test in $(TEST); do ./$$test; done;
 clean:
-	$(RM) $(BINDIR)
-	$(RM) $(OBJDIR)
-	$(RM) $(TESTDIR)
+	$(RM) -r $(BINDIR)
+	$(RM) -r $(OBJDIR)
+	$(RM) -r $(TESTDIR)
 
 -include $(SRCDIR)/local.mk /dev/null
 
