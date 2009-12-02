@@ -72,4 +72,7 @@ $(OBJDIR)/empty:
 	$(MKDIR) $(dir $@)
 	touch $@
 
+$(OBJDIR)/%.o:$(SRCDIR)/%.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) -E $< -o $@
+
 # end
