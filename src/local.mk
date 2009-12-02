@@ -21,4 +21,6 @@
 
 THISDIR=$(dir $(lastword $(MAKEFILE_LIST)))
 
+-include $(wildcard $(patsubst $(SRCDIR)/,$(OBJDIR)/,$(THISDIR))*.d) /dev/null
+
 # end
