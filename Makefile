@@ -19,6 +19,9 @@
 # the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 # Boston, MA 02110-1301, USA.
 
+CFLAGS+=-Wall -Wextra -Werror
+CFLAGS+=-std=c99
+CFLAGS+=-g
 CFLAGS+=-MMD -MP
 
 MKDIR=mkdir -p
