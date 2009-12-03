@@ -65,7 +65,7 @@ static double da_deta(double a)
 
 static double dhubble_deta(double a)
 {
-  return da_eta(a)*dhubble_da(a);
+  return da_deta(a)*dhubble_da(a);
 }
 
 struct Cosmos * CosmosCreate(double a0)
