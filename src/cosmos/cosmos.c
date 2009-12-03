@@ -86,7 +86,7 @@ void CosmosDestroy(struct Cosmos * this)
 void CosmosSetTime(struct Cosmos * this,
 		   double eta)
 {
-
+  this->a = eta2a(eta);
 }
 
 double CosmosOmega(struct Cosmos * this,

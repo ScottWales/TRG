@@ -49,6 +49,10 @@ void cosmos_teardown(void ** state)
 void test_cosmos_set_scale(void ** state)
 {
   struct Cosmos * cosmos = *state;
+
+  double neweta = 10;
+  CosmosSetTime(cosmos,neweta);
+  assert_float_equal(cosmos->a,eta2a(neweta),1e-6,1e-6);
 }
 
 void test_cosmos_omega(void ** state)
