@@ -1,0 +1,20 @@
+* Solver
+** Struct
+** Create
+
+* Cosmos
+** Struct
+** TODO Create
+   Takes starting scale and number of fluids
+   Use the number of fluids
+** SetTime
+   Reset the scale factor
+** TODO Omega
+   Give omega for a component
+   It should be possible to change the cosmology here
+
+* Power
+** Struct
+** Create
+
+* Bispectrum
