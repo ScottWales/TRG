@@ -29,19 +29,33 @@
 #include <math.h>
 
 struct Power {
-  char empty;
+  size_t size;
+  size_t comp;
+  double * k; // size
+  double * Pk; // size*2*fluids*2*fluids
+  double * dPk_deta;
 };
 
-struct Power * PowerCreate(void)
+struct Power * PowerCreate(size_t size, size_t fluids)
 {
   struct Power * this = calloc(1,sizeof(*this));
   assert(this);
+
+  this->size = size;
+  this->comp = 2*fluids;
+
+  this->k = malloc(size*sizeof(*(this->k)));
+  this->Pk = malloc(size*4*fluids*fluids*sizeof(*(this->Pk)));
+  this->dPk_deta = malloc(size*4*fluids*fluids*sizeof(*(this->dPk_deta)));
 
   return this;
 }
 
 void PowerDestroy(struct Power * this)
 {
+  free(this->k);
+  free(this->Pk);
+  free(this->dPk_deta);
   free(this);
 }
 

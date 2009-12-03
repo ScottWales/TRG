@@ -26,9 +26,11 @@
 #ifndef power_h
 #define power_h 1
 
+#include <stddef.h>
+
 struct Power;
 
-struct Power * PowerCreate(void);
+struct Power * PowerCreate(size_t size, size_t fluids);
 void PowerDestroy(struct Power * this);
 
 #endif // power_h

@@ -28,25 +28,15 @@
 
 #include "power.c"
 
-struct Cosmos * CosmosCreate(double a)
-{
-  return malloc(1);
-}
-
-void CosmosDestroy(struct Cosmos * c)
-{
-  free(c);
-}
-
 void test_power_init(void ** status)
 {
-  struct Power * power = PowerCreate();
+  struct Power * power = PowerCreate(10,1);
   PowerDestroy(power);
 }
 
 void power_setup(void ** state)
 { 
-  struct Power * power = PowerCreate();
+  struct Power * power = PowerCreate(10,1);
   *state = power;
 }
 
