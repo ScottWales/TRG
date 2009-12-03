@@ -29,7 +29,7 @@
 #include <math.h>
 
 struct Power {
-  void empty;
+  char empty;
 };
 
 struct Power * PowerCreate(void)

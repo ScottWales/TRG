@@ -26,5 +26,6 @@ TRG_src+=$(THISDIR)trg.c
 
 include $(SRCDIR)/cosmos/local.mk
 include $(SRCDIR)/solver/local.mk
+include $(SRCDIR)/power/local.mk
 
 # end

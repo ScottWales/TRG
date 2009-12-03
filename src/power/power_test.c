@@ -40,13 +40,13 @@ void CosmosDestroy(struct Cosmos * c)
 
 void test_power_init(void ** status)
 {
-  struct Power * power = PowerCreate(0.1);
+  struct Power * power = PowerCreate();
   PowerDestroy(power);
 }
 
 void power_setup(void ** state)
 { 
-  struct Power * power = PowerCreate(0.1);
+  struct Power * power = PowerCreate();
   *state = power;
 }
 
