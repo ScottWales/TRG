@@ -46,10 +46,19 @@ void power_teardown(void ** state)
   PowerDestroy(power);
 }
 
+void test_power_derivative(void ** state)
+{
+  struct Power * power = *state;
+  
+}
+
 int main(int argc, char ** argv)
 {
   struct UnitTest tests[] = {
     unit_test(test_power_init),
+    unit_test_setup_teardown(test_power_derivative,
+			     power_setup,
+			     power_teardown),
   };
   return run_tests(tests);
 }
