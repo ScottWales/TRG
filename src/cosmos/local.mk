@@ -24,10 +24,9 @@ THISDIR:=$(dir $(lastword $(MAKEFILE_LIST)))
 
 COSMOS_srcdir:=$(THISDIR)
 COSMOS_testdir:=$(patsubst $(SRCDIR)/%,$(TESTDIR)/%,$(COSMOS_srcdir))
+
 COSMOS_src:=$(COSMOS_srcdir)cosmos.c
 COSMOS_test:=$(COSMOS_testdir)cosmos_test
-
-$(COSMOS_test):$(COSMOS_testdir)empty
 
 TRG_src+=$(COSMOS_src)
 TEST+=$(COSMOS_test)

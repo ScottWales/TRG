@@ -47,6 +47,8 @@ OBJ+=$(TRG_obj)
 
 all: $(BIN) check
 
+.SECONDEXPANSION:
+
 -include $(SRCDIR)/local.mk /dev/null
 
 check: $(TEST)
@@ -66,14 +68,14 @@ $(BIN):$(BINDIR)/empty
 	$(MKDIR) $(dir $@)
 	touch $@
 
-$(OBJDIR)/%.o:$(SRCDIR)/%.c $(patsubst $(SRCDIR)/%,$(OBJDIR)/%,$(THISDIR))empty
+$(OBJDIR)/%.o:$(SRCDIR)/%.c $$(dir $$@)empty
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c -o $@ $<
 
 $(TEST):CFLAGS+=-I/usr/local/cmockery/include
 $(TEST):LDFLAGS+=-L/usr/local/cmockery/lib
 $(TEST):LDLIBS+=-lcmockery
 
-$(TESTDIR)/%_test:$(OBJDIR)/%_test.o
+$(TESTDIR)/%_test:$(OBJDIR)/%_test.o $$(dir $$@)empty
 	$(CC) $(LDFLAGS) -o $@ $(filter %.o,$^) $(LDLIBS)
 
 # end
