@@ -61,9 +61,6 @@ $(TRG_bin):$(TRG_obj)
 	$(CC) $(LDFLAGS) -o $@ $(filter %.o,$^) $(LDLIBS)
 
 $(BIN):$(BINDIR)/empty
-$(SRC):$(SRCDIR)/empty
-$(OBJ):$(OBJDIR)/empty
-$(TEST):$(TESTDIR)/empty
 
 %/empty:
 	$(MKDIR) $(dir $@)
