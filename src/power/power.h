@@ -29,8 +29,11 @@
 #include <stddef.h>
 
 struct Power;
+struct Solver;
 
 struct Power * PowerCreate(size_t size, size_t fluids);
 void PowerDestroy(struct Power * this);
+
+void PowerDerivative(struct Solver * solver);
 
 #endif // power_h

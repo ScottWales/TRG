@@ -28,6 +28,9 @@
 #include <stdlib.h>
 #include <math.h>
 
+#include "solver/solver.h"
+#include "cosmos/cosmos.h"
+
 struct Power {
   size_t size;
   size_t comp;
@@ -59,3 +62,27 @@ void PowerDestroy(struct Power * this)
   free(this);
 }
 
+void PowerDerivative(struct Solver * solver)
+{
+  struct Power * power = solver->power;
+  struct Cosmos * cosmos = solver->cosmos;
+
+  for (unsigned int a=0;a<power->comp;a++){
+    for (unsigned int b=0;b<power->comp;b++){
+      for (unsigned int c=0;c<power->comp;c++){
+
+	double Omega_ac = CosmosOmega(cosmos,a,c);
+	double Omega_bc = CosmosOmega(cosmos,b,c);
+	
+	double * restrict dP_deta_ab = power->dPk_deta + (a*comp->size+b)*power->size;
+	double * P_cb = power->Pk + (c*comp->size+b)*power->size;
+	double * P_ac = power->Pk + (a*comp->size+c)*power->size;
+
+	for (size_t ki=0;ki<power->size;ki++){
+	  dP_deta_ab[ki] = -Omega_ac*P_cb[ki] - Omega_bc*P_ac[ki];
+	}
+
+      }
+    }
+  }
+}

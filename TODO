@@ -25,13 +25,16 @@
 ** TODO Create [0/1]
    Makes the vectors to hold k, P(k)
    - [ ] Read in P(k) from somewhere
-** TODO Derivative [0/1]
+** TODO Derivative [1/1]
    Calculates the power derivative for a solver
    Takes in the entire solver, as it will need omega and bispectrum for
    full calculation
-   - [ ] Implement
+   - [X] Implement
+   - May be possible to use SIMD here
+   - Needs to be updated if omega depends on k
 ** TODO Dump [0/1]
    Outputs the current state
    - [ ] Implement
 
 * Bispectrum
+  Not needed for linear calculation
