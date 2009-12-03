@@ -34,10 +34,31 @@ void test_cosmos_init(void ** status)
   CosmosDestroy(cosmos);
 }
 
+void cosmos_setup(void ** state)
+{ 
+  struct Cosmos * cosmos = CosmosCreate(0.01);
+  *state = cosmos;
+}
+
+void cosmos_teardown(void ** state)
+{
+  struct Cosmos * cosmos = *state;
+  CosmosDestroy(cosmos);
+}
+
+void test_cosmos_set_scale(void ** state)
+{
+  struct Cosmos * cosmos = *state;
+  
+}
+
 int main(int argc, char ** argv)
 {
   struct UnitTest tests[] = {
     unit_test(test_cosmos_init),
+    unit_test_setup_teardown(test_cosmos_set_scale,
+			     cosmos_setup,
+			     cosmos_teardown),
   };
   return run_tests(tests);
 }
