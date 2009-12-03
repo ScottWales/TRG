@@ -26,8 +26,12 @@
 #ifndef solver_h
 #define solver_h 1
 
+struct Cosmos;
+struct Power;
+
 struct Solver {
   struct Cosmos * cosmos;
+  struct Power * power;
 };
 
 struct Solver * SolverCreate(double a);

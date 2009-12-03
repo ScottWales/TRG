@@ -29,13 +29,15 @@
 #include <math.h>
 
 #include "cosmos/cosmos.h"
+#include "power/power.h"
 
-struct Solver * SolverCreate(double a0)
+struct Solver * SolverCreate(double a0,size,fluids)
 {
   struct Solver * this = calloc(1,sizeof(*this));
   assert(this);
 
-  this->cosmos = CosmosCreate(a0);
+  this->cosmos = CosmosCreate(a0,fluids);
+  this->power = PowerCreate(size,fluids);
 
   return this;
 }
@@ -43,6 +45,7 @@ struct Solver * SolverCreate(double a0)
 void SolverDestroy(struct Solver * this)
 {
   CosmosDestroy(this->cosmos);
+  PowerDestroy(this->power);
 
   free(this);
 }
