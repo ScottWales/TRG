@@ -51,3 +51,12 @@ void SolverDestroy(struct Solver * this)
   free(this);
 }
 
+void SolverStep(struct Solver * this, double newa)
+{
+
+}
+
+void SolverDump(struct Solver * solver)
+{
+
+}

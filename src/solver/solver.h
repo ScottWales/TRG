@@ -31,4 +31,8 @@ struct Solver;
 struct Solver * SolverCreate(double a);
 void SolverDestroy(struct Solver * this);
 
+void SolverStep(struct Solver * this, double newa);
+
+void SolverDump(struct Solver * solver);
+
 #endif // solver_h
