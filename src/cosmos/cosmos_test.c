@@ -49,13 +49,22 @@ void cosmos_teardown(void ** state)
 void test_cosmos_set_scale(void ** state)
 {
   struct Cosmos * cosmos = *state;
-  
+}
+
+void test_cosmos_omega(void ** state)
+{
+  struct Cosmos * cosmos = *state;
+  double omega_00 = CosmosOmega(cosmos,0,0);
+  assert_float_equal(omega_00,1.,1e-6,1e-6);
 }
 
 int main(int argc, char ** argv)
 {
   struct UnitTest tests[] = {
     unit_test(test_cosmos_init),
+    unit_test_setup_teardown(test_cosmos_omega,
+			     cosmos_setup,
+			     cosmos_teardown),
     unit_test_setup_teardown(test_cosmos_set_scale,
 			     cosmos_setup,
 			     cosmos_teardown),
