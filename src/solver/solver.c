@@ -31,7 +31,7 @@
 #include "cosmos/cosmos.h"
 #include "power/power.h"
 
-struct Solver * SolverCreate(double a0,size,fluids)
+struct Solver * SolverCreate(double a0, size_t size, size_t fluids)
 {
   struct Solver * this = calloc(1,sizeof(*this));
   assert(this);

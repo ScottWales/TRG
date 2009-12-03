@@ -26,9 +26,11 @@
 #ifndef cosmos_h
 #define cosmos_h 1
 
+#include <stddef.h>
+
 struct Cosmos;
 
-struct Cosmos * CosmosCreate(double a);
+struct Cosmos * CosmosCreate(double a, size_t fluids);
 void CosmosDestroy(struct Cosmos * this);
 
 void CosmosSetTime(struct Cosmos * this, 

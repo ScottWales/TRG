@@ -30,13 +30,13 @@
 
 void test_cosmos_init(void ** status)
 {
-  struct Cosmos * cosmos = CosmosCreate(0.01);
+  struct Cosmos * cosmos = CosmosCreate(0.01,1);
   CosmosDestroy(cosmos);
 }
 
 void cosmos_setup(void ** state)
 { 
-  struct Cosmos * cosmos = CosmosCreate(0.01);
+  struct Cosmos * cosmos = CosmosCreate(0.01,1);
   *state = cosmos;
 }
 

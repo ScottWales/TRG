@@ -68,7 +68,7 @@ static double dhubble_deta(double a)
   return da_deta(a)*dhubble_da(a);
 }
 
-struct Cosmos * CosmosCreate(double a0)
+struct Cosmos * CosmosCreate(double a0, size_t fluids)
 {
   struct Cosmos * this = calloc(1,sizeof(*this));
   assert(this);

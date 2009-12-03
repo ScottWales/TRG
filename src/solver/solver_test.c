@@ -28,7 +28,7 @@
 
 #include "solver.c"
 
-struct Cosmos * CosmosCreate(double a)
+struct Cosmos * CosmosCreate(double a,size_t fluids)
 {
   return malloc(1);
 }
@@ -38,15 +38,25 @@ void CosmosDestroy(struct Cosmos * c)
   free(c);
 }
 
+struct Power * PowerCreate(size_t size, size_t fluids)
+{
+  return malloc(1);
+}
+
+void PowerDestroy(struct Power * power)
+{
+  free(power);
+}
+
 void test_solver_init(void ** status)
 {
-  struct Solver * solver = SolverCreate(0.1);
+  struct Solver * solver = SolverCreate(0.1,10,1);
   SolverDestroy(solver);
 }
 
 void solver_setup(void ** state)
 { 
-  struct Solver * solver = SolverCreate(0.1);
+  struct Solver * solver = SolverCreate(0.1,10,1);
   *state = solver;
 }
 

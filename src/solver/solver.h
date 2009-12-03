@@ -26,6 +26,8 @@
 #ifndef solver_h
 #define solver_h 1
 
+#include <stddef.h>
+
 struct Cosmos;
 struct Power;
 
@@ -34,7 +36,7 @@ struct Solver {
   struct Power * power;
 };
 
-struct Solver * SolverCreate(double a);
+struct Solver * SolverCreate(double a, size_t size, size_t fluids);
 void SolverDestroy(struct Solver * this);
 
 void SolverStep(struct Solver * this, double newa);
