@@ -28,10 +28,13 @@
 
 struct Cosmos;
 
-struct Cosmos * CosmosCreate();
+struct Cosmos * CosmosCreate(double a);
 void CosmosDestroy(struct Cosmos * this);
 
 void CosmosSetTime(struct Cosmos * this, 
 		    double eta);
+double CosmosOmega(struct Cosmos * this,
+		   int a,
+		   int b);
 
 #endif // cosmos_h

@@ -32,7 +32,7 @@ const double M = 1; // Reduced planck mass sqrt(8*pi*G)
 const double ain = 1e-6; // For calculating eta
 
 struct Cosmos {
-  double eta0;
+  double eta;
 };
 
 static double hubble_a(double a){
@@ -73,7 +73,7 @@ struct Cosmos * CosmosCreate(double a0)
   struct Cosmos * this = calloc(1,sizeof(*this));
   assert(this);
 
-  this->eta0 = a2eta(a0);
+  this->eta = a2eta(a0);
 
   return this;
 }
@@ -87,4 +87,11 @@ void CosmosSetTime(struct Cosmos * this,
 		   double eta)
 {
 
+}
+
+double CosmosOmega(struct Cosmos * this,
+		   int a,
+		   int b)
+{
+  return 1.;
 }
