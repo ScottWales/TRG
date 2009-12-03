@@ -62,17 +62,11 @@ $(SRC):$(SRCDIR)/empty
 $(OBJ):$(OBJDIR)/empty
 $(TEST):$(TESTDIR)/empty
 
-$(BINDIR)/empty:
-	$(MKDIR) $(dir $@)
-	touch $@
-$(SRCDIR)/empty:
-	$(MKDIR) $(dir $@)
-	touch $@
-$(OBJDIR)/empty:
+%/empty:
 	$(MKDIR) $(dir $@)
 	touch $@
 
-$(OBJDIR)/%.o:$(SRCDIR)/%.c
+$(OBJDIR)/%.o:$(SRCDIR)/%.c $(patsubst $(SRCDIR)/%,$(OBJDIR)/%,$(THISDIR))empty
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c -o $@ $<
 
 # end
