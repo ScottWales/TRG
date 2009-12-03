@@ -24,6 +24,7 @@ THISDIR:=$(dir $(lastword $(MAKEFILE_LIST)))
 
 TRG_src+=$(THISDIR)trg.c
 
-include $(THISDIR)cosmos/local.mk
+include $(SRCDIR)/cosmos/local.mk
+include $(SRCDIR)/solver/local.mk
 
 # end
