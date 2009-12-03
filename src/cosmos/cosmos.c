@@ -83,4 +83,8 @@ void CosmosDestroy(struct Cosmos * this)
   free(this);
 }
 
+void CosmosSetTime(struct Cosmos * this,
+		   double eta)
+{
 
+}

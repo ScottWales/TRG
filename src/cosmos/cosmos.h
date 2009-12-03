@@ -31,4 +31,7 @@ struct Cosmos;
 struct Cosmos * CosmosCreate();
 void CosmosDestroy(struct Cosmos * this);
 
+void CosmosSetTime(struct Cosmos * this, 
+		    double eta);
+
 #endif // cosmos_h
