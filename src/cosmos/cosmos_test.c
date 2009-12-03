@@ -54,8 +54,17 @@ void test_cosmos_set_scale(void ** state)
 void test_cosmos_omega(void ** state)
 {
   struct Cosmos * cosmos = *state;
+  double a = cosmos->a;
+
+  // Values for eds
   double omega_00 = CosmosOmega(cosmos,0,0);
   assert_float_equal(omega_00,1.,1e-6,1e-6);
+  double omega_01 = CosmosOmega(cosmos,0,1);
+  assert_float_equal(omega_01,-1.,1e-6,1e-6);
+  double omega_10 = CosmosOmega(cosmos,1,0);
+  assert_float_equal(omega_10,-3./2.,1e-6,1e-6);
+  double omega_11 = CosmosOmega(cosmos,1,1);
+  assert_float_equal(omega_11,2.,1e-6,1e-6);
 }
 
 int main(int argc, char ** argv)
