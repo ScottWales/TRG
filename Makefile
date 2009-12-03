@@ -24,6 +24,8 @@ CFLAGS+=-std=c99
 CFLAGS+=-g
 CFLAGS+=-MMD -MP
 
+CFLAGS+=-Isrc
+
 MKDIR=mkdir -p
 
 BIN=
@@ -44,14 +46,15 @@ SRC+=$(TRG_src)
 OBJ+=$(TRG_obj)
 
 all: $(BIN) check
+
+-include $(SRCDIR)/local.mk /dev/null
+
 check: $(TEST)
 	for test in $(TEST); do ./$$test; done;
 clean:
 	$(RM) -r $(BINDIR)
 	$(RM) -r $(OBJDIR)
 	$(RM) -r $(TESTDIR)
-
--include $(SRCDIR)/local.mk /dev/null
 
 TRG_obj:=$(patsubst $(SRCDIR)/%.c,$(OBJDIR)/%.o,$(TRG_src))
 $(TRG_bin):$(TRG_obj)
@@ -68,5 +71,13 @@ $(TEST):$(TESTDIR)/empty
 
 $(OBJDIR)/%.o:$(SRCDIR)/%.c $(patsubst $(SRCDIR)/%,$(OBJDIR)/%,$(THISDIR))empty
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c -o $@ $<
+
+$(TEST):CFLAGS+=-I/usr/local/cmockery/include
+$(TEST):LDFLAGS+=-L/usr/local/cmockery/lib
+$(TEST):LDLIBS+=-lcmockery
+
+$(TESTDIR)/%_test:$(OBJDIR)/%_test.o \
+		$(patsubst $(SRCDIR)/%,$(TESTDIR)/%,$(THISDIR))empty
+	$(CC) $(LDFLAGS) -o $@ $(filter %.o,$^) $(LDLIBS)
 
 # end
