@@ -20,8 +20,14 @@
 # Boston, MA 02110-1301, USA.
 
 THISDIR:=$(dir $(lastword $(MAKEFILE_LIST)))
--include $(wildcard $(patsubst $(SRCDIR)/,$(OBJDIR)/,$(THISDIR))*.d) /dev/null
+-include $(wildcard $(patsubst $(SRCDIR)/%,$(OBJDIR)/%,$(THISDIR))*.d) /dev/null
 
-TRG_src+=$(THISDIR)cosmos.c
+COSMOS_srcdir=$(THISDIR)
+COSMOS_testdir=$(patsubst $(SRCDIR)/%,$(TESTDIR)/%,$(COSMOS_srcdir))
+COSMOS_src=$(COSMOS_srcdir)cosmos.c
+COSMOS_test=$(COSMOS_testdir)cosmos_test
+
+TRG_src+=$(COSMOS_src)
+TEST+=$(COSMOS_test)
 
 # end
