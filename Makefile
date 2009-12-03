@@ -73,8 +73,7 @@ $(TEST):CFLAGS+=-I/usr/local/cmockery/include
 $(TEST):LDFLAGS+=-L/usr/local/cmockery/lib
 $(TEST):LDLIBS+=-lcmockery
 
-$(TESTDIR)/%_test:$(OBJDIR)/%_test.o \
-		$(patsubst $(SRCDIR)/%,$(TESTDIR)/%,$(THISDIR))empty
+$(TESTDIR)/%_test:$(OBJDIR)/%_test.o
 	$(CC) $(LDFLAGS) -o $@ $(filter %.o,$^) $(LDLIBS)
 
 # end
