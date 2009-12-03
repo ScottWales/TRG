@@ -19,10 +19,11 @@
 # the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 # Boston, MA 02110-1301, USA.
 
-THISDIR=$(dir $(lastword $(MAKEFILE_LIST)))
+THISDIR:=$(dir $(lastword $(MAKEFILE_LIST)))
+-include $(wildcard $(patsubst $(SRCDIR)/,$(OBJDIR)/,$(THISDIR))*.d) /dev/null
 
 TRG_src+=$(THISDIR)trg.c
 
--include $(wildcard $(patsubst $(SRCDIR)/,$(OBJDIR)/,$(THISDIR))*.d) /dev/null
+include $(THISDIR)cosmos/local.mk
 
 # end
