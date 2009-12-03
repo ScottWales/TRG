@@ -36,30 +36,30 @@
 #include <stdlib.h>
 #include <google/cmockery.h>
 
-#define assert_float_not_equal(a,b,abserr,relerr)		\
+#define assert_float_not_equal(_a,_b,abserr,relerr)		\
   do {								\
-    if (fabs((a)-(b)) > fabs(abserr) + fabs(relerr*(a))){	\
+    if (fabs((_a)-(_b)) > fabs(abserr) + fabs(relerr*(_a))){	\
       /* SUCCESS */						\
     } else {							\
       /* FAIL */						\
-      printf("%s:%d "#a " and " #b " equal\n"			\
-	     #a " => %e\n"					\
-	     #b " => %e\n",					\
-	     __FILE__,__LINE__,a,b);				\
+      printf("%s:%d "#_a " and " #_b " equal\n"			\
+	     #_a " => %e\n"					\
+	     #_b " => %e\n",					\
+	     __FILE__,__LINE__,_a,_b);				\
       fail();							\
     }								\
   } while(0)
 
-#define assert_float_equal(a,b,abserr,relerr)			\
+#define assert_float_equal(_a,_b,abserr,relerr)			\
   do {								\
-    if (fabs((a)-(b)) < fabs(abserr) + fabs(relerr*(a))){	\
+    if (fabs((_a)-(_b)) < fabs(abserr) + fabs(relerr*(_a))){	\
       /* SUCCESS */						\
     } else {							\
       /* FAIL */						\
-      printf("%s:%d: "#a " and " #b " not equal\n\t"		\
-	     #a " => %e\n\t"					\
-	     #b " => %e\n",					\
-	     __FILE__,__LINE__,a,b);				\
+      printf("%s:%d: "#_a " and " #_b " not equal\n\t"		\
+	     #_a " => %e\n\t"					\
+	     #_b " => %e\n",					\
+	     __FILE__,__LINE__,_a,_b);				\
       fail();							\
     }								\
   } while(0)
