@@ -26,7 +26,9 @@
 #ifndef solver_h
 #define solver_h 1
 
-struct Solver;
+struct Solver {
+  struct Cosmos * cosmos;
+};
 
 struct Solver * SolverCreate(double a);
 void SolverDestroy(struct Solver * this);

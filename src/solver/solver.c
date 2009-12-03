@@ -30,10 +30,6 @@
 
 #include "cosmos/cosmos.h"
 
-struct Solver {
-  struct Cosmos * cosmos;
-};
-
 struct Solver * SolverCreate(double a0)
 {
   struct Solver * this = calloc(1,sizeof(*this));
