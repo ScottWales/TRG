@@ -1,20 +1,37 @@
 * Solver
 ** Struct
+   Contains cosmos, power and bispectrum
 ** Create
+** Step
+** Dump
 
 * Cosmos
 ** Struct
-** TODO Create
+   Containts current cosmology type and scale factor
+** TODO Create [0/2]
    Takes starting scale and number of fluids
-   Use the number of fluids
-** SetTime
+   - [ ] Initialise different cosmologies
+   - [ ] Multiple fluids
+** TODO SetTime
    Reset the scale factor
-** TODO Omega
-   Give omega for a component
-   It should be possible to change the cosmology here
+** TODO Omega [0/1]
+   Gives omega for a component
+   - [ ] It should be possible to change the cosmology here
+   - [ ] Implement multiple fluids
+   - May be neccessary to add k dependance at one point
 
 * Power
 ** Struct
-** Create
+** TODO Create [0/1]
+   Makes the vectors to hold k, P(k)
+   - [ ] Read in P(k) from somewhere
+** TODO Derivative [0/1]
+   Calculates the power derivative for a solver
+   Takes in the entire solver, as it will need omega and bispectrum for
+   full calculation
+   - [ ] Implement
+** TODO Dump [0/1]
+   Outputs the current state
+   - [ ] Implement
 
 * Bispectrum
