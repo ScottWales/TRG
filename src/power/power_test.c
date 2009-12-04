@@ -32,7 +32,11 @@ double CosmosOmega(struct Cosmos * cosmos, int a, int b)
 {
   check_expected(a);
   check_expected(b);
-  return (double)mock();
+  double ret = (double)mock();
+
+  printf("CosmosOmega(%p,%d,%d) : %e\n",cosmos,a,b,ret);
+
+  return ret;
 }
 
 void test_power_init(void ** status)
@@ -59,17 +63,55 @@ void test_power_derivative(void ** state)
   struct Solver solver;
   solver.cosmos = NULL;
   solver.power = power;
+
+  power->comp = 1;
+  expect_value(CosmosOmega,a,0);
+  expect_value(CosmosOmega,b,0);
+  will_return(CosmosOmega,1);
+  expect_value(CosmosOmega,a,0);
+  expect_value(CosmosOmega,b,0);
+  will_return(CosmosOmega,1);
+  for (size_t ki=0;ki<power->size;ki++){
+    power->Pk[ki] = ki;
+  }
+  PowerDerivative(&solver);
+
+  assert_float_equal(power->dPk_deta[1],
+		     -2*power->Pk[1],
+		     1e-6,1e-6);
   
-  expect_value(CosmosOmega,a,0);
-  expect_value(CosmosOmega,a,0);
-  expect_value(CosmosOmega,a,1);
-  expect_value(CosmosOmega,a,1);
-  expect_value(CosmosOmega,b,0);
-  expect_value(CosmosOmega,b,1);
-  expect_value(CosmosOmega,b,0);
-  expect_value(CosmosOmega,b,1);
+  
+  power->comp = 2;
+  for (unsigned int a=0;a<2;a++){
+    for (unsigned int b=0;b<2;b++){
+      for (unsigned int c=0;c<2;c++){
+	expect_value(CosmosOmega,a,a);
+	expect_value(CosmosOmega,b,c);
+	if (a == 0 && c == 0){
+	  will_return(CosmosOmega,1);
+	} else {
+	  will_return(CosmosOmega,0);
+	}
+
+	expect_value(CosmosOmega,a,b);
+	expect_value(CosmosOmega,b,c);
+	if (b == 0 && c == 0){
+	  will_return(CosmosOmega,1);
+	} else {
+	  will_return(CosmosOmega,0);
+	}
+      }
+      for (size_t ki=0;ki<power->size;ki++){
+	power->Pk[(a*2+b)*10+ki] = 1;
+      }
+    }
+  }	
 
   PowerDerivative(&solver);
+
+  assert_float_equal(power->dPk_deta[(0*2+0)*10+1],
+		     -2*power->Pk[(0*2+0)*10+1],
+		     1e-6,1e-6);
 }
 
 int main(int argc, char ** argv)
