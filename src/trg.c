@@ -30,9 +30,10 @@
 int main(int argc, char ** argv)
 {
   double a = 0.01;
-  size_t nsteps = 100;
+  size_t nsteps = 1;
 
   struct Solver * solver = SolverCreate(a,10,1);
+  SolverDump(solver);
   
   double logastep = (1-log(a))/(double)nsteps;
   for (double loga = log(a); loga <= 1; loga += logastep){
