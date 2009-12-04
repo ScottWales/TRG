@@ -1,2 +1,4 @@
 This is an attempt to create a solver following the time renormalisation group 
 scheme of Pietroni 2008.
+
+Testing requires the cmockery library from http://cmockery.googlecode.com
