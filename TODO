@@ -2,7 +2,11 @@
 ** Struct
    Contains cosmos, power and bispectrum
 ** Create
-** Step
+** Step [1/2]
+   Evolve the spectra to the desired time
+   - [X] Implement
+	 Currently using Euler integration
+   - [ ] Test
 ** Dump
 
 * Cosmos
@@ -12,8 +16,10 @@
    Takes starting scale and number of fluids
    - [ ] Initialise different cosmologies
    - [ ] Multiple fluids
-** TODO SetTime
-   Reset the scale factor
+** TODO SetTime [1/2]
+   Reset the scale factor, takes eta
+   - [X] Implement
+   - [ ] Test   
 ** TODO Omega [0/1]
    Gives omega for a component
    - [ ] It should be possible to change the cosmology here
@@ -22,19 +28,34 @@
 
 * Power
 ** Struct
-** TODO Create [0/1]
+** TODO Create [1/1]
    Makes the vectors to hold k, P(k)
-   - [ ] Read in P(k) from somewhere
-** TODO Derivative [1/1]
+   - [X] Read in P(k) from somewhere
+	 Implemented by initialPk
+*** TODO initialPk [1/2]
+    Sets up the initial power and wavelengths
+    Currently sets all P(k)'s to k^-1
+    - [X] Implement
+	  Once reading is implemented this should set up the vectors too
+    - [ ] Test
+    - [ ] Read in data
+** TODO Derivative [1/2]
    Calculates the power derivative for a solver
    Takes in the entire solver, as it will need omega and bispectrum for
    full calculation
    - [X] Implement
-   - May be possible to use SIMD here
-   - Needs to be updated if omega depends on k
-** TODO Dump [0/1]
+	 May be possible to use SIMD here
+	 Needs to be updated if omega depends on k
+   - [ ] Test
+** TODO Step [1/2]
+   Evolves the power for a single step, adds dPk_deta*step to Pk
+   - [X] Implement
+	 Currently using euler integration
+   - [ ] Test
+** TODO Dump [0/2]
    Outputs the current state
    - [ ] Implement
+   - [ ] Test
 
 * Bispectrum
   Not needed for linear calculation
