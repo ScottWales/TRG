@@ -38,5 +38,6 @@ void CosmosSetTime(struct Cosmos * this,
 double CosmosOmega(struct Cosmos * this,
 		   int a,
 		   int b);
+void CosmosDump(struct Cosmos * this);
 
 #endif // cosmos_h

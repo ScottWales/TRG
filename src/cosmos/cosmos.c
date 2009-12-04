@@ -27,6 +27,7 @@
 #include <assert.h>
 #include <stdlib.h>
 #include <math.h>
+#include <stdio.h>
 
 const double M = 1; // Reduced planck mass sqrt(8*pi*G)
 const double ain = 1e-6; // For calculating eta
@@ -107,4 +108,9 @@ double CosmosOmega(struct Cosmos * this,
     }
   }
   return NAN;
+}
+
+void CosmosDump(struct Cosmos * cosmos)
+{
+  printf("%e\n",cosmos->a);
 }
