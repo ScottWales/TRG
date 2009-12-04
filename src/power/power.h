@@ -35,5 +35,7 @@ struct Power * PowerCreate(size_t size, size_t fluids);
 void PowerDestroy(struct Power * this);
 
 void PowerDerivative(struct Solver * solver);
+void PowerStep(struct Power * this, double deta);
+void PowerDump(struct Power * this);
 
 #endif // power_h
