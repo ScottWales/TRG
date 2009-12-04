@@ -52,10 +52,21 @@ void SolverDestroy(struct Solver * this)
 
 void SolverStep(struct Solver * this, double newa)
 {
+  // Calculate the derivatives
+  PowerDerivative(this);
 
+  // Euler integration
+  double current_time = 0;
+  double new_time = 1;
+  double time_step = new_time - current_time;
+  PowerStep(this->power,time_step);
+  
+  // Set Omega to the new time
+  CosmosSetTime(this->cosmos,new_time);
 }
 
 void SolverDump(struct Solver * solver)
 {
-
+  CosmosDump(solver->cosmos);
+  PowerDump(solver->power);
 }
