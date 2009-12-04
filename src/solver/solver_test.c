@@ -48,6 +48,33 @@ void PowerDestroy(struct Power * power)
   free(power);
 }
 
+void PowerDerivative(struct Solver * solver)
+{
+
+}
+
+void PowerStep(struct Power * this,
+	       double deta)
+{
+
+}
+
+void CosmosSetTime(struct Cosmos * this, 
+		    double eta)
+{
+
+}
+
+void PowerDump(struct Power * this)
+{
+
+}
+
+void CosmosDump(struct Cosmos * this)
+{
+
+}
+
 void test_solver_init(void ** status)
 {
   struct Solver * solver = SolverCreate(0.1,10,1);
