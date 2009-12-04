@@ -28,6 +28,13 @@
 
 #include "power.c"
 
+double CosmosOmega(struct Cosmos * cosmos, int a, int b)
+{
+  check_expected(a);
+  check_expected(b);
+  return (double)mock();
+}
+
 void test_power_init(void ** status)
 {
   struct Power * power = PowerCreate(10,1);
@@ -49,7 +56,20 @@ void power_teardown(void ** state)
 void test_power_derivative(void ** state)
 {
   struct Power * power = *state;
+  struct Solver solver;
+  solver.cosmos = NULL;
+  solver.power = power;
   
+  expect_value(CosmosOmega,a,0);
+  expect_value(CosmosOmega,a,0);
+  expect_value(CosmosOmega,a,1);
+  expect_value(CosmosOmega,a,1);
+  expect_value(CosmosOmega,b,0);
+  expect_value(CosmosOmega,b,1);
+  expect_value(CosmosOmega,b,0);
+  expect_value(CosmosOmega,b,1);
+
+  PowerDerivative(&solver);
 }
 
 int main(int argc, char ** argv)
